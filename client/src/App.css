@@ -7,10 +7,28 @@
   font-family: 'Poppins', sans-serif;
 }
 
+body{
+  background: #0f0f0f;
+}
+
+.bg-second{
+  background: #272727;
+  color: #fff;
+}
+
+p{
+  margin: 0;
+}
+
 .btn-color{
   background: #000;
   border: 0;
   outline: 0;
   color: #fff;
   border-radius: 50px;
+  transition: .3s;
+}
+
+.btn-color:hover{
+  transform: scale(1.05);
 }

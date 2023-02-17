@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {/* <img src="" alt="" /> */}
@@ -53,8 +53,12 @@ const Navbar = () => {
               </li>
             </ul>
             <div className="d-flex justify-content-between">
+              <NavLink to="./login">
               <button type="button" className="btn-color me-3 px-4 py-2">Login</button>
+              </NavLink>
+              <NavLink to="./signup">
               <button type="button" className="btn-color px-4 py-2">Signup</button>
+              </NavLink>
             </div>
           </div>
         </div>

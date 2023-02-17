@@ -6,7 +6,6 @@ node_modules
 .pnp.js
 
 /.vscode
-CodeASAP.ai
 
 # testing
 /coverage

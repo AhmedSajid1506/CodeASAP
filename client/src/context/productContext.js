@@ -1,20 +1,20 @@
-import { createContext, useContext, useEffect } from "react";
-import axios from "axios";
+import { createContext, useContext } from "react";
+// import axios from "axios";
 
 const AppContext = createContext();
 
-const API = "";
+// const API = "";
 
 const AppProvider = ({ children }) => {
 
-  const getProducts = async (url) => {
-    const res = await axios.get(url);
+  // const getProducts = async (url) => {
+  //   const res = await axios.get(url);
 
-  }
+  // }
 
-  useEffect(() => {
-    getProducts(API);
-  }, [])
+  // useEffect(() => {
+  //   getProducts(API);
+  // }, [])
   
 
   return (
