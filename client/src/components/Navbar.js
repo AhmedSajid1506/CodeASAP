@@ -1,12 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import logo from "../img/CodeASAP.png";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
-          {/* <img src="" alt="" /> */}
+        <a className="navbar-brand m-0" href="/">
+          <img src={logo} alt="logo" />
         </a>
         <button
           className="navbar-toggler"
