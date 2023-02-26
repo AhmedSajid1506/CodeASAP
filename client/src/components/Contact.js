@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Contact = () => {
+const Contact = (props) => {
+
+  useEffect(() => {
+    props.setShowNav(true);
+  })
+  
   return (
     <div>Contact</div>
   )

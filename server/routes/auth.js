@@ -75,12 +75,12 @@ router.post(
       let user = await User.findOne({ email });
       if (!user) {
         success = false;
-        return res.status(400).json({ success, error: "Please try to login with correct credentials" });
+        return res.status(400).json({ success, error: "The account you are trying to log into does not exist." });
       }
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
-        success = false;
-        return res.status(400).json({ success, error: "Please try to login with correct credentials" });
+        success = "falsee";
+        return res.status(400).json({ success, error: "The email or password is incorrect." });
       }
       const data = {
         user: {

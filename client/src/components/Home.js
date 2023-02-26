@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Home = () => {
+const Home = (props) => {
+  
+  useEffect(() => {
+    props.setShowNav(true);
+  })
+  
   return (
     <div>Home</div>
   )

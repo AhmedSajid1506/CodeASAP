@@ -1,8 +1,28 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../img/CodeASAP.png";
+import userIcon from "../img/user.png";
 
 const Navbar = () => {
+  const [showDiv, setShowDiv] = useState(false);
+
+  const userDiv = useRef();
+  const userIconToggler = () => {
+    if (showDiv === false) {
+      setShowDiv(true);
+      userDiv.current.classList.remove("d-none");
+    } else {
+      setShowDiv(false);
+      userDiv.current.classList.add("d-none");
+    }
+  };
+
+  let navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear("token", "email");
+    navigate("/login");
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
@@ -19,7 +39,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="offcanvas offcanvas-end"
+          className="offcanvas offcanvas-end bg-dark"
           tabIndex="-1"
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
@@ -53,13 +73,58 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className="d-flex justify-content-between">
-              <NavLink to="./login">
-              <button type="button" className="btn-color me-3 px-4 py-2">Login</button>
-              </NavLink>
-              <NavLink to="./signup">
-              <button type="button" className="btn-color px-4 py-2">Signup</button>
-              </NavLink>
+            <div className="d-flex justify-content-between align-items-center me-2">
+              {!localStorage.getItem("token") ? (
+                <div>
+                  <NavLink to="./login">
+                    <button type="button" className="btn-color me-3 px-4 py-2">
+                      Login
+                    </button>
+                  </NavLink>
+                  <NavLink to="./signup">
+                    <button type="button" className="btn-color px-4 py-2">
+                      Signup
+                    </button>
+                  </NavLink>
+                </div>
+              ) : (
+                <div>
+                  <img
+                    src={userIcon}
+                    className="userIcon"
+                    alt="userIcon"
+                    onClick={userIconToggler}
+                  />
+                  <div className="userDiv p-3 d-none" ref={userDiv}>
+                    <div className="d-flex align-items-center fs-14">
+                      <img
+                        src={userIcon}
+                        className="userIcon me-2"
+                        alt="userIcon"
+                      />
+                      <div>
+                        <p>M. Ahmed Sajid</p>
+                        <p>jujwuth2904@gmail.com</p>
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="fs-14">
+                      <div className="d-flex align-items-center">
+                        <i className="fa-solid fa-gear me-3 icon"></i>
+                        <p>Profile Settings</p>
+                      </div>
+                    </div>
+                    <hr />
+                      <button
+                        type="button"
+                        className="btn-color px-4 py-2 col-12"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const Admin = () => {
+const Admin = (props) => {
+
+  useEffect(() => {
+    props.setShowNav(true);
+  })
+  
   return (
     <div className="container mt-3">
       <div className="row bg-second px-md-5 px-2 mx-1 mx-md-0 py-4 rounded-4">

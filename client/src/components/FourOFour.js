@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const FourOFour = () => {
+const FourOFour = (props) => {
+
+  useEffect(() => {
+    props.setShowNav(true);
+  })
+  
   return (
     <div>
       

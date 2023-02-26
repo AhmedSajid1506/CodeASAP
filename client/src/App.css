@@ -10,6 +10,24 @@
 body{
   background: #0f0f0f;
   color: #fff;
+  overflow: overlay;
+}
+
+::-webkit-scrollbar{
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #a0a0a0;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: #712777;
+}
+
+::-webkit-scrollbar-track{
+  background: #181818;
 }
 
 .bg-second{
@@ -19,6 +37,10 @@ body{
 
 p{
   margin: 0;
+}
+
+a{
+  color: #fff;
 }
 
 .btn-color{
@@ -54,4 +76,38 @@ p{
 
 .navbar-brand img{
   width: 190px;
+}
+
+.userIcon{
+  height: 35px;
+  cursor: pointer;
+}
+
+.userDiv{
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  background: #282828;
+  border-radius: 20px;
+}
+
+.userDiv::before{
+  content: '';
+  position: absolute;
+  top: -7px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  background: #282828;
+  transform: rotate(45deg);
+  border-radius: 5px;
+  z-index: -1;
+}
+
+.fs-14{
+  font-size: 14px;
+}
+
+.icon{
+  font-size: 18px;
 }
