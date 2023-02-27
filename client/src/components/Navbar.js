@@ -1,10 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../img/CodeASAP.png";
 import userIcon from "../img/user.png";
+import { useUserContext } from "../context/userContext";
 
 const Navbar = () => {
   const [showDiv, setShowDiv] = useState(false);
+  const { user, getUser } = useUserContext();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      getUser();
+    }
+  })
+  
 
   const userDiv = useRef();
   const userIconToggler = () => {
@@ -103,8 +112,8 @@ const Navbar = () => {
                         alt="userIcon"
                       />
                       <div>
-                        <p>M. Ahmed Sajid</p>
-                        <p>jujwuth2904@gmail.com</p>
+                        <p>{user.first_name + " " + user.last_name}</p>
+                        <p>{user.email}</p>
                       </div>
                     </div>
                     <hr />
