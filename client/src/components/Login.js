@@ -83,7 +83,7 @@ const Login = (props) => {
             <i></i>
           </div>
           <button type="button" onClick={() => {
-              loginUser(email, password);
+              loginUser();
             }} className="btn-color py-2 px-4 mt-3">Login</button>
           <p className="mt-4 switcher">Don't have an account? <NavLink to="/signup">Signup</NavLink></p>
         </form>

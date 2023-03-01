@@ -6,6 +6,7 @@ const User = require("../models/User");
 const fetchuser = require("../middleware/fetchuser");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
+const profileImg = require("../middleware/profileImg");
 
 // ROUTE: 1; Create a user using POST "/api/v1/auth/signup". No login required.
 router.post(
@@ -17,10 +18,11 @@ router.post(
     body("password", "Password must be atleast 6 characters long").isLength({
       min: 6,
     }),
-  ],
+  ], profileImg,
   async (req, res) => {
+    console.log(req.body, req.file);
     // If there are errors return bad request and the errors
-    const errors = validationResult(req);
+    const errors = validationResult(req.body);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -39,6 +41,7 @@ router.post(
         last_name: req.body.last_name,
         email: req.body.email,
         password: securePass,
+        profImg: req.file.path,
       });
 
       const data = {
