@@ -21,8 +21,14 @@ const UserSchema = new Schema({
     required: true
   },
   profImg:{
-    type: String,
-    required: true
+    public_id: {
+      type: String,
+      required: true
+    },
+    url: {
+      type: String,
+      required: true
+    }
   }
 });
 

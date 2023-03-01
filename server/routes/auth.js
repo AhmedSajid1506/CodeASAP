@@ -6,7 +6,8 @@ const User = require("../models/User");
 const fetchuser = require("../middleware/fetchuser");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const profileImg = require("../middleware/profileImg");
+// const profileImg = require("../middleware/profileImg");
+const cloudinary = require("../utils/cloudinary");
 
 // ROUTE: 1; Create a user using POST "/api/v1/auth/signup". No login required.
 router.post(
@@ -18,7 +19,7 @@ router.post(
     body("password", "Password must be atleast 6 characters long").isLength({
       min: 6,
     }),
-  ], profileImg,
+  ],
   async (req, res) => {
     console.log(req.body, req.file);
     // If there are errors return bad request and the errors
@@ -36,12 +37,21 @@ router.post(
       }
       const salt = await bcrypt.genSalt(10);
       securePass = await bcrypt.hash(req.body.password, salt);
+
+      // Upload
+      const res = cloudinary.uploader.upload(profImg, {
+        folder: "uploads"
+      })
+
       user = await User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
         password: securePass,
-        profImg: req.file.path,
+        profImg: {
+          public_id: result.public_id,
+          url: result.secure_url
+        },
       });
 
       const data = {

@@ -23,7 +23,7 @@ const Signup = (props) => {
     confirmPassword: "",
     profImg: ""
   });
-  console.log(credentials.profImg, 12);
+  // console.log(credentials.profImg, 12);
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -31,12 +31,26 @@ const Signup = (props) => {
   
   const { firstName, lastName, email, password, confirmPassword, profImg } = credentials;
 
-  const formData = new FormData();
-  formData.append('first_name', firstName);
-  formData.append('last_name', lastName);
-  formData.append('email', email);
-  formData.append('password', password);
-  formData.append('profImg', profImg);
+  const handleProfImage = (e) => {
+    const file = e.target.files[0];
+    setFileToBase(file);
+    console.log(file);
+  }
+
+  const setFileToBase = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setCredentials({...credentials, profImg: reader.result});
+    }
+  }
+
+  // const formData = new FormData();
+  // formData.append('first_name', firstName);
+  // formData.append('last_name', lastName);
+  // formData.append('email', email);
+  // formData.append('password', password);
+  // formData.append('profImg', profImg);
 
   const signupUser = async () => {
     if (firstName.length < 3) {
@@ -54,7 +68,14 @@ const Signup = (props) => {
     } else {
       const response = await fetch("http://localhost:6001/api/v1/auth/signup", {
         method: "POST",
-        body: formData,
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password,
+          profImg: profImg
+        })
+        // body: formData,
       });
       const json = await response.json();
       console.log(json);
@@ -125,10 +146,15 @@ const Signup = (props) => {
             <i></i>
           </div>
           <div className="inputBox mb-3">
-            <input onChange={(e)=> setCredentials({ ...credentials, profImg: e.target.files[0] })} name="profImg" type="file" required />
+            <input onChange={handleProfImage} name="profImg" type="file" required />
             {/* <span>Upload Profile Image</span> */}
             <i></i>
           </div>
+          {/* <div className="inputBox mb-3">
+            <input onChange={(e)=> setCredentials({ ...credentials, profImg: e.target.files[0] })} name="profImg" type="file" required />
+            /* <span>Upload Profile Image</span>
+            <i></i>
+          </div> */}
           <button type="button" onClick={() => {
               signupUser();
             }} className="btn-color py-2 px-4 mt-3">Sign Up</button>
