@@ -44,7 +44,7 @@ a{
 }
 
 .btn-color{
-  background: #000;
+  background: #50C878;
   border: 0;
   outline: 0;
   color: #fff;
@@ -110,4 +110,8 @@ a{
 
 .icon{
   font-size: 18px;
+}
+
+.f-primary{
+  color: #50C878;
 }

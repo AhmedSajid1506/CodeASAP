@@ -82,7 +82,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <img src={`server/uploads/profImg/profImg_1677612320068_343951030.png`} alt="Profile" />
+            {/* <img src={`server/uploads/profImg/profImg_1677612320068_343951030.png`} alt="Profile" /> */}
             <div className="d-flex justify-content-between align-items-center me-2">
               {!localStorage.getItem("token") ? (
                 <div>
